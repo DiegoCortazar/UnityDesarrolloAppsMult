@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
-{
+public class PlayerController : MonoBehaviour {
     // Start is called before the first frame update
 
     private Rigidbody rb;
@@ -16,51 +16,51 @@ public class PlayerController : MonoBehaviour
     private ParticleSystem sistemaParticulas;
     private AudioSource audioRecoleccion;
 
-    private int cubes = 12;
+    public Text textoContador;
+    public Text textoGanaste;
 
-    void Start()
-    {
-        rb = GetComponent<Rigidbody>();
-        sistemaParticulas = particulas.GetComponent<ParticleSystem>();
-        sistemaParticulas.Stop();
-        audioRecoleccion = GetComponent<AudioSource>();
+    private int cubes = 12;
+    private int contador = 0;
+
+    void Start () {
+        rb = GetComponent<Rigidbody> ();
+        sistemaParticulas = particulas.GetComponent<ParticleSystem> ();
+        sistemaParticulas.Stop ();
+        audioRecoleccion = GetComponent<AudioSource> ();
+        textoContador.text = "Contador: " + contador.ToString ();
+        textoGanaste.text = "";
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (cubes == 0)
-        {
-            // this.transform.position = new Vector3(0,1,0);
-            // cubes = 1;
-            SceneManager.LoadScene(1);
+    void Update () {
+        if (cubes == 0) {
+            //SceneManager.LoadScene (1);
+            textoGanaste.text = "GANASTE";
+
         }
     }
 
-    void FixedUpdate()
-    {
-        float moveHorizontal = Input.GetAxis("Horizontal");
-        float moveVertical = Input.GetAxis("Vertical");
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-        rb.AddForce(movement * speed);
+    void FixedUpdate () {
+        float moveHorizontal = Input.GetAxis ("Horizontal");
+        float moveVertical = Input.GetAxis ("Vertical");
+        Vector3 movement = new Vector3 (moveHorizontal, 0.0f, moveVertical);
+        rb.AddForce (movement * speed);
     }
 
-    void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.CompareTag("Recolectable"))
-        {
+    void OnTriggerEnter (Collider other) {
+        if (other.gameObject.CompareTag ("Recolectable")) {
             //other.gameObject.SetActive(false);
             posicion = other.gameObject.transform.position;
             particulas.position = posicion;
-            sistemaParticulas.Play();
+            sistemaParticulas.Play ();
             cubes -= 1;
-            audioRecoleccion.Play();
-            Destroy(other.gameObject);
-            Debug.Log(cubes);
+            contador = contador + 1;
+            textoContador.text = "Contador: " + contador.ToString ();
+            audioRecoleccion.Play ();
+            Destroy (other.gameObject);
+            Debug.Log (contador);
 
-        }
-        else
-        {
+        } else {
 
         }
     }
