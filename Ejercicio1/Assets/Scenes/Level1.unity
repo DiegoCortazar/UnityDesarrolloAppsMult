@@ -2184,6 +2184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 25
+  cuboMovible: {fileID: 2065963565}
   particulas: {fileID: 567197328}
   textoContador: {fileID: 11103971}
   textoGanaste: {fileID: 542785186}
@@ -2371,6 +2372,12 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!1 &2065963565 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1363413833542851323, guid: 05d8a0a0e3a1ebe4d829b0de38249539,
+    type: 3}
+  m_PrefabInstance: {fileID: 1363413833608871370}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1363413833608871370
 PrefabInstance:
   m_ObjectHideFlags: 0

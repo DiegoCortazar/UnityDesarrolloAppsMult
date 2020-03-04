@@ -40,4 +40,9 @@ public class RotateCube : MonoBehaviour {
         }
     }
 
+    public void SalirAplicacion(){
+        Debug.Log("Saliendo de la Aplicacion");
+        Application.Quit();
+    }
+
 }
